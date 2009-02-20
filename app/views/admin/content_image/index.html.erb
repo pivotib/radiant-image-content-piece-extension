@@ -1,0 +1,15 @@
+<p><%= link_to "New link", {:action => :new} %></p>
+<table>
+    <% @content_images.each do |content_image| %>
+    <% end %>
+    <% ContentImage.find(:all).each do |content_image| %>
+      <tr class="node level-1">
+        <td class="link">
+          <%= link_to content_image.name, content_image_edit_url(:id => content_image.id) %>
+        </td>
+        <td class="remove">
+          <%= link_to image('remove', :alt => 'Remove link'), content_image_remove_url(:id => content_image.id) %>
+        </td>
+      </tr>
+    <% end %>
+</table>
