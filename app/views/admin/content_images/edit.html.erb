@@ -1,0 +1,60 @@
+<% if @content_image.new_record? %>
+  <h1>New link</h1>
+<% else %>
+  <h1>Edit: <%= @content_image.name %></h1>
+<% end %>
+
+<% form_for @content_image do %>
+  <div class="form-area">
+    <div  id="link_form_area">
+      <p class="">
+        <label for="content_image_name">Name</label>
+        <%= text_field "content_image", "name", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+            
+      <p class="">
+        <label for="content_image_slug">Slug</label>
+        <%= text_field "content_image", "slug", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+
+      <p class="">
+        <label for="content_image_small_image">Small Image</label>
+        <%= file_field "content_image", "small_image", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+
+      <p class="">
+        <label for="content_image_large_image">Large Image</label>
+        <%= file_field "content_image", "large_image", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+
+      <p class="">
+        <label for="content_image_alt">Alt</label>
+        <%= text_field "content_image", "alt", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+
+      <p class="">
+        <label for="content_image_link">Link</label>
+        <%= text_field "content_image", "link", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+
+      <p class="">
+        <label for="content_image_link_popout">Link Popout</label>
+        <%= check_box "content_image", "link_popout", :class => 'textbox', :maxlength => 255, :size=>30 %>
+      </p>
+
+      <p class="content">
+        <label for="content_image_description">Description</label><br />
+        <%= text_area "content_image", "description", :class => 'textarea' %>
+      </p>
+
+       <span class="clear">&nbsp;</span>
+    </div>
+  </div>
+
+  <p class="buttons">
+    <%= save_model_button(@content_image) %>
+    <%= save_model_and_continue_editing_button(@content_image) %>
+    or 
+    <%= link_to "Cancel", {:action => :index} %>
+  </p>
+<% end %>

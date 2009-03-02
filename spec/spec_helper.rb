@@ -18,6 +18,14 @@ if File.directory?(File.dirname(__FILE__) + "/matchers")
   Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
 end
 
+# pull in Radiant Dataset (See radiant spec_helper file) to use for login_as
+require 'dataset'
+class Test::Unit::TestCase
+  include Dataset
+  datasets_directory "#{RADIANT_ROOT}/spec/datasets"
+  Dataset::ContextClassMethods.datasets_database_dump_path = File.expand_path(RAILS_ROOT + '/tmp/dataset')
+end
+
 Spec::Runner.configure do |config|
   # config.use_transactional_fixtures = true
   # config.use_instantiated_fixtures  = false

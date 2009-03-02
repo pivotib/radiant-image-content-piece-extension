@@ -3,25 +3,27 @@
 
 class ContentImagePieceExtension < Radiant::Extension
   version "1.0"
-  description "Describe your extension here"
-  url "http://yourwebsite.com/content_image_piece"
+  description "Radiant extension for adding Images to your content"
+  url "http://github.com/pivotib/radiant-image-content-piece-extension/tree/master"
+  
+
   
   define_routes do |map|
-    map.with_options(:controller => 'admin/content_image') do |content_image|
-      content_image.content_image_index           'admin/content_images',             :action => 'index'
-      content_image.content_image_new             'admin/content_images/new',         :action => 'new'
-      content_image.content_image_edit            'admin/content_images/edit/:id',    :action => 'edit'
-      content_image.content_image_remove          'admin/content_images/remove/:id',  :action => 'remove'
+    map.namespace :admin do |admin|
+      admin.resources :content_images
     end
   end
 
+
   
   def activate
-     admin.tabs.add "Content Image Piece", "/admin/content_images", :after => "Layouts", :visibility => [:all]
+    @content_pieces = ContentPiece.instance
+    @content_pieces << { :name => 'Content Images', :path_method => 'admin_content_images_path' }
+     #admin.tabs.add "Content Image Piece", "/admin/content_images", :after => "Layouts", :visibility => [:all]
   end
   
   def deactivate
-     admin.tabs.remove "Content Image Piece"
+     #admin.tabs.remove "Content Image Piece"
   end
   
 end
