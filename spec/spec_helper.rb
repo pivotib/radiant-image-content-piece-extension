@@ -24,6 +24,7 @@ class Test::Unit::TestCase
   include Dataset
   datasets_directory "#{RADIANT_ROOT}/spec/datasets"
   Dataset::ContextClassMethods.datasets_database_dump_path = File.expand_path(RAILS_ROOT + '/tmp/dataset')
+  
 end
 
 Spec::Runner.configure do |config|

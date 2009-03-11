@@ -1,51 +1,35 @@
-<% if @content_image.new_record? %>
-  <h1>New link</h1>
-<% else %>
-  <h1>Edit: <%= @content_image.name %></h1>
-<% end %>
+<h1><%= @content_image.name %></h1>
 
-<% form_tag do %>
-  <div class="form-area">
-    <div  id="link_form_area">
-      <p class="">
-        <label for="content_image_name">Name</label>
-        <%= @content_image.name %>
-      </p>
-            
-      <p class="">
-        <label for="content_image_slug">Slug</label>
-        <%= @content_image.slug %>
-      </p>
+  <table border='0' cellpadding='0' cellspacing='0' class='fieldset'>
+        
+        <tr>
+          <th class="label"><label for="content_image_name"><strong>Name</strong></label></th>
+          <td><%= @content_image.name %></td>
+        </tr>
+        <tr>
+          <th class="label"><label for="content_image_slug"><strong>Slug</strong></label></th>
+          <td><%= @content_image.slug %></td>
+        </tr>
 
-      <p class="">
-        <label for="content_image_small_image">Small Image</label>
-        <p>Small: <%= image_tag @content_image.content_image.url(:small) %></p>
-        <p>Large: <%= image_tag @content_image.content_image.url(:large) %></p>
-      </p>
-
-      <p class="">
-        <label for="content_image_alt">Alt</label>
-        <%= @content_image.alt %>
-      </p>
-
-      <p class="">
-        <label for="content_image_link">Link</label>
-        <%= @content_image.link %>
-      </p>
-
-      <p class="">
-        <label for="content_image_link_popout">Link Popout</label>
-        <%= @content_image.link_popout %>
-      </p>
-
-      <p class="content">
-        <label for="content_image_description">Description</label><br />
-        <%= @content_image.description %>
-      </p>
-
-       <span class="clear">&nbsp;</span>
-    </div>
-  </div>
-
-
-<% end %>
+        <% if @content_image.alt.nil? %>
+          <tr>
+          <th class="label"><label for="content_image_alt">Alt</label></th>
+          <td><%= @content_image.alt %></td>
+          </tr>
+        <% end %>
+        
+        <tr>
+          <th class="label"><label><strong>Thumbnail</strong></label></th>
+          <td><%= image_tag @content_image.content_image.url(:thumbnail) %></td>
+        </tr>
+        
+        <tr>
+          <th class="label"><label><strong>Small</strong></label> </th>
+          <td><%= image_tag @content_image.content_image.url(:small) %></td>
+        </tr>
+        
+        <tr>
+          <th class="label"><label><strong>Large</strong></label></th>
+          <td><%= image_tag @content_image.content_image.url(:large) %></td>
+        </tr>
+    </table>

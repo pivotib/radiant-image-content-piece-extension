@@ -1,41 +1,31 @@
+<%= javascript_include_tag 'content_image_piece/application.js' %>
 <h1>New Content Image</h1>
 
-<% form_for [:admin, @content_image], :html => { :multipart => true } do |f| %>
+<div id="error">
+<%= error_messages_for "content_image" %>
+</div>
+
+<% form_for([:admin, @content_image], :html => { :multipart => true }) do |f| %>
   <div class="form-area">
     <div  id="link_form_area">
       <p class="">
-        <label for="content_image_name">Name</label>
-        <%= f.text_field "name", :class => 'textbox', :maxlength => 255, :size=>30 %>
+        <%= label @content_image, :name %>
+        <%= f.text_field :name %>
       </p>
             
       <p class="">
-        <label for="content_image_slug">Slug</label>
+        <%= label @slug, :slug %>
         <%= f.text_field "slug", :class => 'textbox', :maxlength => 255, :size=>30 %>
       </p>
 
       <p class="">
-        <label for="content_image">Image File</label>
+        <%= label @content_image, :content_image %>
         <%= f.file_field :content_image %>
       </p>
 
       <p class="">
         <label for="content_image_alt">Alt</label>
         <%= f.text_field "alt", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="">
-        <label for="content_image_link">Link</label>
-        <%= f.text_field "link", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="">
-        <label for="content_image_link_popout">Link Popout</label>
-        <%= f.check_box "link_popout", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="content">
-        <label for="content_image_description">Description</label><br />
-        <%= f.text_area "description", :class => 'textarea' %>
       </p>
 
        <span class="clear">&nbsp;</span>

@@ -5,6 +5,7 @@ class ContentImagePieceExtension < Radiant::Extension
   version "1.0"
   description "Radiant extension for adding Images to your content"
   url "http://github.com/pivotib/radiant-image-content-piece-extension/tree/master"
+  Page.send :include, ContentImageTags
   
 
   

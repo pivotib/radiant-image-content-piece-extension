@@ -66,11 +66,13 @@ describe Admin::ContentImagesController do
     end
     describe "successful save" do
       before do
+        @content_image = mock_model(ContentImage)
+        ContentImage.stub!(:new).and_return(@content_image)
         @content_image.stub!(:save).and_return(true)
       end
       it "should redirect to show" do
         do_request
-        response.should redirect_to("admin/content_images/")
+        response.should redirect_to(admin_content_image_url(@content_image))
       end
     end
     describe "unsuccessful save" do
@@ -79,7 +81,7 @@ describe Admin::ContentImagesController do
       end
       it "should show the new view" do
         do_request
-        response.should redirect_to("admin/content_images/new")
+        response.should render_template("admin/content_images/new")
       end
     end
     def do_request(new_params={})

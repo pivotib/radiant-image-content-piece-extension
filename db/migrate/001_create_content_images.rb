@@ -5,9 +5,6 @@ class CreateContentImages < ActiveRecord::Migration
       t.string :name
       t.string :slug
       t.string :alt
-      t.string :link
-      t.boolean :link_popout
-      t.text :description
       t.date :created_at
       t.date :updated_at
       t.integer :created_by_id

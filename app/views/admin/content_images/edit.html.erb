@@ -1,60 +1,41 @@
-<% if @content_image.new_record? %>
-  <h1>New link</h1>
-<% else %>
-  <h1>Edit: <%= @content_image.name %></h1>
-<% end %>
+<%= javascript_include_tag 'content_image_piece/application.js' %>
+<h1>Edit: <%= @content_image.name %></h1>
 
-<% form_for @content_image do %>
-  <div class="form-area">
-    <div  id="link_form_area">
-      <p class="">
-        <label for="content_image_name">Name</label>
-        <%= text_field "content_image", "name", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-            
-      <p class="">
-        <label for="content_image_slug">Slug</label>
-        <%= text_field "content_image", "slug", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
+<% form_for([:admin, @content_image], :html => { :multipart => true }) do |f| %>
+  <table border='0' cellpadding='0' cellspacing='0' class='fieldset'>
+      <tr>
+        <th class="label"><%= label @content_image, :name %></th>
+        <td class="field"><%= f.text_field :name, :class => 'textbox' %></td>
+        <td class="help">Required and must be unique</td>
+      </tr>
+      
+      <tr>
+        <th class="label"><%= label @slug, :slug %></th>
+        <td class="field"><%= f.text_field "slug", :class => 'textbox', :maxlength => 255, :size=>30 %></td>
+        <td class="help">Required and must be unique</td>
+      </tr>
+      
+      <tr>
+        <th class="label"><%= label @alt, :alt %></th>
+        <td class="field"><%= f.text_field "alt", :class => 'textbox', :maxlength => 255, :size=>30 %></td>
+        <td class="help">Optional</td>
+      </tr>
+      
+      <tr>
+        <th class="label"><%= label @content_image, :content_image %></th>
+        <td class="field"><%= f.file_field :content_image, :class => 'textbox' %></td>
+        <td class="help">Requried</td>
+      </tr>
+      
+      <tr>
+        <th class="label">Small:</th>
+        <td colspan="2"><%= image_tag @content_image.content_image.url(:small) %></td>
+      </tr>
 
-      <p class="">
-        <label for="content_image_small_image">Small Image</label>
-        <%= file_field "content_image", "small_image", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="">
-        <label for="content_image_large_image">Large Image</label>
-        <%= file_field "content_image", "large_image", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="">
-        <label for="content_image_alt">Alt</label>
-        <%= text_field "content_image", "alt", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="">
-        <label for="content_image_link">Link</label>
-        <%= text_field "content_image", "link", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="">
-        <label for="content_image_link_popout">Link Popout</label>
-        <%= check_box "content_image", "link_popout", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
-
-      <p class="content">
-        <label for="content_image_description">Description</label><br />
-        <%= text_area "content_image", "description", :class => 'textarea' %>
-      </p>
-
-       <span class="clear">&nbsp;</span>
-    </div>
-  </div>
-
+  </table>
   <p class="buttons">
-    <%= save_model_button(@content_image) %>
-    <%= save_model_and_continue_editing_button(@content_image) %>
-    or 
+    <%= f.submit 'Save Changes', :class=>'button' %>
     <%= link_to "Cancel", {:action => :index} %>
   </p>
 <% end %>
+
