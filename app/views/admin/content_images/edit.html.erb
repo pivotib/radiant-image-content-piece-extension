@@ -1,6 +1,10 @@
 <%= javascript_include_tag 'content_image_piece/application.js' %>
 <h1>Edit: <%= @content_image.name %></h1>
-
+<% if !error_messages_for("content_image").blank? %>
+<div id="error">
+<%= error_messages_for "content_image" %>
+</div>
+<% end %>
 <% form_for([:admin, @content_image], :html => { :multipart => true }) do |f| %>
   <table border='0' cellpadding='0' cellspacing='0' class='fieldset'>
       <tr>
@@ -24,7 +28,7 @@
       <tr>
         <th class="label"><%= label @content_image, :content_image %></th>
         <td class="field"><%= f.file_field :content_image, :class => 'textbox' %></td>
-        <td class="help">Requried</td>
+        <td class="help">Required</td>
       </tr>
       
       <tr>

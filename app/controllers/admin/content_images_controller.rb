@@ -1,6 +1,6 @@
 class Admin::ContentImagesController < ApplicationController
   def index
-    @content_images = ContentImage.find(:all)
+    @content_images = ContentImage.find(:all, :order => 'name ASC')
   end
   
   def show

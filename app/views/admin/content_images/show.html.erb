@@ -11,9 +11,9 @@
           <td><%= @content_image.slug %></td>
         </tr>
 
-        <% if @content_image.alt.nil? %>
+        <% if @content_image.alt? %>
           <tr>
-          <th class="label"><label for="content_image_alt">Alt</label></th>
+          <th class="label"><label for="content_image_alt"><strong>Alt</strong></label></th>
           <td><%= @content_image.alt %></td>
           </tr>
         <% end %>
@@ -33,3 +33,8 @@
           <td><%= image_tag @content_image.content_image.url(:large) %></td>
         </tr>
     </table>
+    
+    <p class="buttons">
+      <%= link_to 'Edit Image', edit_admin_content_image_path(@content_image) %> | 
+      <%= link_to "List of Images", {:action => :index} %>
+    </p>

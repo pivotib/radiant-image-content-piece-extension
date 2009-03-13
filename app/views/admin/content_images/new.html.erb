@@ -1,39 +1,40 @@
 <%= javascript_include_tag 'content_image_piece/application.js' %>
 <h1>New Content Image</h1>
-
+<% if !error_messages_for("content_image").blank? %>
 <div id="error">
 <%= error_messages_for "content_image" %>
 </div>
+<% end %>
 
 <% form_for([:admin, @content_image], :html => { :multipart => true }) do |f| %>
-  <div class="form-area">
-    <div  id="link_form_area">
-      <p class="">
-        <%= label @content_image, :name %>
-        <%= f.text_field :name %>
-      </p>
-            
-      <p class="">
-        <%= label @slug, :slug %>
-        <%= f.text_field "slug", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
+  <table border='0' cellpadding='0' cellspacing='0' class='fieldset'>
+    <tr>
+    <th class="label"><%= label @content_image, :name %></th>
+    <td class="field"><%= f.text_field :name, :class => 'textbox' %></td>
+    <td class="help">Required and must be unique</td>
+    </tr>
 
-      <p class="">
-        <%= label @content_image, :content_image %>
-        <%= f.file_field :content_image %>
-      </p>
+    <tr>
+    <th class="label"><%= label @slug, :slug %></th>
+    <td class="field"><%= f.text_field "slug", :class => 'textbox', :maxlength => 255, :size=>30 %></td>
+    <td class="help">Required and must be unique</td>
+    </tr>
 
-      <p class="">
-        <label for="content_image_alt">Alt</label>
-        <%= f.text_field "alt", :class => 'textbox', :maxlength => 255, :size=>30 %>
-      </p>
+    <tr>
+    <th class="label"><%= label @alt, :alt %></th>
+    <td class="field"><%= f.text_field "alt", :class => 'textbox', :maxlength => 255, :size=>30 %></td>
+    <td class="help">Optional</td>
+    </tr>
 
-       <span class="clear">&nbsp;</span>
-    </div>
-  </div>
+    <tr>
+    <th class="label"><%= label @content_image, :content_image %></th>
+    <td class="field"><%= f.file_field :content_image, :class => 'textbox' %></td>
+    <td class="help">Required</td>
+    </tr>
+  </table>
 
   <p class="buttons">
-    <%= f.submit %>
+    <%= f.submit 'Save', :class=>'button' %>
     <%= link_to "Cancel", {:action => :index} %>
   </p>
 <% end %>
